@@ -1,0 +1,120 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Project {
+  id             String   @id @default(uuid())
+  slug           String   @unique
+  title          String
+  tagline        String
+  description    String
+  longDescription String
+  address        String
+  city           String
+  province       String
+  postalCode     String
+  image          String
+  images         String[]
+  units          Int
+  status         String
+  completionDate String
+  amenities      String[]
+  schools        String[]
+  shopping       String[]
+  transit        String[]
+  features       String[]
+  lat            Float
+  lng            Float
+  type           String
+  floorPlans     FloorPlan[]
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model FloorPlan {
+  id         String @id @default(uuid())
+  name       String
+  bedrooms   Int
+  bathrooms  Float
+  sqft       Int
+  price      Int
+  image      String
+  svg        String
+  projectId  String
+  project    Project @relation(fields: [projectId], references: [id])
+}
+
+model RentalProperty {
+  id               String   @id @default(uuid())
+  title            String
+  description      String
+  images           String[]
+  price            Int
+  bedrooms         Int
+  bathrooms        Float
+  parking          Int
+  sqft             Int
+  availabilityDate String
+  address          String
+  city             String
+  province         String
+  amenities        String[]
+  projectId        String?
+  projectName      String
+  lat              Float
+  lng              Float
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model Lead {
+  id           String   @id @default(uuid())
+  name         String
+  email        String
+  phone        String
+  project      String?
+  budget       String?
+  propertyType String?
+  moveInDate   String?
+  notes        String?
+  type         String   @default("purchase")
+  createdAt    DateTime @default(now())
+}
+
+model ViewingRequest {
+  id            String   @id @default(uuid())
+  name          String
+  email         String
+  phone         String
+  project       String
+  preferredDate String
+  preferredTime String
+  notes         String?
+  status        String   @default("pending")
+  createdAt     DateTime @default(now())
+}
+
+model ContactMessage {
+  id        String   @id @default(uuid())
+  name      String
+  email     String
+  phone     String?
+  subject   String
+  message   String
+  createdAt DateTime @default(now())
+}
+
+model AdminUser {
+  id           String   @id @default(uuid())
+  username     String   @unique
+  email        String   @unique
+  passwordHash String
+  role         String   @default("admin")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
