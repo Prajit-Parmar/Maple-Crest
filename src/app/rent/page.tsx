@@ -76,7 +76,7 @@ export default function RentPage() {
                         <div className="flex items-center justify-between text-xs text-gray-500 border-t border-gray-800 pt-3">
                           <span className="flex items-center"><HiHome className="w-3 h-3 mr-1 text-gold" />{rental.bedrooms} Bed</span>
                           <span className="flex items-center"><HiUser className="w-3 h-3 mr-1 text-gold" />{rental.bathrooms} Bath</span>
-                          <span className="flex items-center"><HiCalendar className="w-3 h-3 mr-1 text-gold" />{new Date(rental.availability).toLocaleDateString()}</span>
+                          <span className="flex items-center"><HiCalendar className="w-3 h-3 mr-1 text-gold" />{(() => { const d = new Date(rental.availability); return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; })()}</span>
                         </div>
                       </div>
                     </div>

@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import dynamic from 'next/dynamic';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { useParams } from 'next/navigation';
 import { HiLocationMarker, HiHome, HiUser, HiCalendar, HiCheck, HiX as HiXIcon, HiArrowLeft } from 'react-icons/hi';
@@ -56,7 +57,7 @@ export default function RentalDetailPage() {
                     { icon: HiHome, label: 'Bedrooms', value: rental.bedrooms },
                     { icon: HiUser, label: 'Bathrooms', value: rental.bathrooms },
                     { icon: HiHome, label: 'SQFT', value: rental.sqft.toLocaleString() },
-                    { icon: HiCalendar, label: 'Available', value: new Date(rental.availability).toLocaleDateString() },
+                    { icon: HiCalendar, label: 'Available', value: (() => { const d = new Date(rental.availability); return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; })() },
                   ].map((s) => (<div key={s.label} className="glass rounded-xl p-3 text-center"><s.icon className="w-5 h-5 text-gold mx-auto mb-1" /><p className="text-lg font-bold">{s.value}</p><p className="text-xs text-gray-400">{s.label}</p></div>))}
                 </div>
                 <div className="space-y-2">
