@@ -24,11 +24,11 @@ export default function AdminLoginPage() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-dark p-4">
       <div className="absolute inset-0 bg-gradient-to-br from-dark via-dark-2 to-dark-3" />
-      <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(circle at 50% 50%, rgba(245,158,11,0.15) 0%, transparent 50%)' }} />
+      <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(circle at 50% 50%, rgba(200,168,78,0.15) 0%, transparent 50%)' }} />
       <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5 }} className="relative z-10 w-full max-w-md">
         <div className="glass rounded-2xl p-8 md:p-12">
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold gradient-gold mb-2" style={{ fontFamily: 'var(--font-source-code)' }}>Maple Crest</h1>
+            <h1 className="text-3xl font-bold gradient-gold font-serif mb-2">Maple Crest</h1>
             <p className="text-gray-400">Admin Dashboard</p>
           </div>
           <form onSubmit={handleSubmit} className="space-y-5">

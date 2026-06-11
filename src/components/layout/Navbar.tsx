@@ -36,38 +36,32 @@ export default function Navbar() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6 }}
-      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${
-        scrolled
-          ? 'bg-white/95 backdrop-blur-md border-b border-gray-300 shadow-sm'
-          : 'bg-transparent'
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        scrolled ? 'bg-dark/95 backdrop-blur-md shadow-lg' : 'bg-transparent'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          <Link href="/" className="flex items-center gap-2 group">
-            <span className="text-xl sm:text-2xl font-bold tracking-tight" style={{ fontFamily: 'var(--font-source-code)' }}>
-              🍁 Maple Crest
-            </span>
+          <Link href="/" className="flex items-center gap-2">
+            <span className="text-2xl font-bold gradient-gold font-serif">Maple Crest</span>
           </Link>
 
-          <div className="hidden lg:flex items-center gap-1">
+          <div className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => {
               const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href))
               return (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`relative px-4 py-2 text-sm font-medium tracking-wider uppercase transition-colors ${
-                    isActive
-                      ? 'text-primary bg-primary/10 rounded-lg'
-                      : 'text-gray-700 hover:text-primary'
+                  className={`relative text-sm font-medium tracking-wide uppercase transition-colors hover:text-gold ${
+                    isActive ? 'text-gold' : 'text-gray-300'
                   }`}
                 >
                   {link.label}
                   {isActive && (
                     <motion.span
                       layoutId="nav-underline"
-                      className="absolute -bottom-0.5 left-2 right-2 h-0.5 bg-primary rounded-full"
+                      className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gold"
                     />
                   )}
                 </Link>
@@ -77,10 +71,10 @@ export default function Navbar() {
 
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="lg:hidden p-2 border border-gray-300 rounded-lg text-gray-700 hover:border-primary transition-colors"
+            className="lg:hidden text-white p-2"
             aria-label="Toggle menu"
           >
-            {mobileOpen ? <HiX size={24} /> : <HiMenu size={24} />}
+            {mobileOpen ? <HiX size={28} /> : <HiMenu size={28} />}
           </button>
         </div>
       </div>
@@ -92,11 +86,11 @@ export default function Navbar() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: '100%' }}
             transition={{ type: 'tween', duration: 0.3 }}
-            className="fixed top-0 right-0 w-72 h-full bg-white border-l border-gray-300 shadow-xl z-50 lg:hidden"
+            className="fixed top-0 right-0 w-72 h-full bg-dark-2 border-l border-gold/10 z-50 lg:hidden"
           >
             <div className="flex justify-end p-4">
-              <button onClick={() => setMobileOpen(false)} className="p-2 border border-gray-300 rounded-lg text-gray-700">
-                <HiX size={24} />
+              <button onClick={() => setMobileOpen(false)} className="text-white p-2">
+                <HiX size={28} />
               </button>
             </div>
             <div className="flex flex-col gap-2 px-6">
@@ -106,8 +100,8 @@ export default function Navbar() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className={`py-3 text-lg font-medium border-b border-gray-200 transition-colors ${
-                      isActive ? 'text-primary' : 'text-gray-700 hover:text-primary'
+                    className={`py-3 text-lg font-medium border-b border-white/5 transition-colors hover:text-gold ${
+                      isActive ? 'text-gold' : 'text-gray-300'
                     }`}
                   >
                     {link.label}
