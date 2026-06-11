@@ -1,11 +1,14 @@
 'use client';
 
 import { useState } from 'react';
+import dynamic from 'next/dynamic';
 import { motion } from 'framer-motion';
 import { HiPhone, HiMail, HiLocationMarker, HiClock, HiCheckCircle } from 'react-icons/hi';
 import Button from '@/components/ui/Button';
 import Input, { TextArea } from '@/components/ui/Input';
 import AnimatedSection from '@/components/ui/AnimatedSection';
+
+const MapView = dynamic(() => import('@/components/map/MapView'), { ssr: false });
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', subject: '', message: '' });
@@ -98,7 +101,11 @@ export default function ContactPage() {
               </AnimatedSection>
               <AnimatedSection delay={0.2} direction="right">
                 <div className="glass rounded-2xl overflow-hidden h-[250px]">
-                  <iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=120+King+Street+West+Toronto&zoom=15" className="w-full h-full" loading="lazy" title="Maple Crest Developments Head Office" />
+                  <MapView
+                    markers={[{ lat: 43.6489, lng: -79.3805, title: 'Maple Crest Developments', subtitle: '120 King Street West, Toronto' }]}
+                    zoom={15}
+                    height="250px"
+                  />
                 </div>
               </AnimatedSection>
             </div>

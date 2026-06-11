@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, use } from 'react'
+import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
@@ -8,6 +9,8 @@ import { HiLocationMarker, HiCalendar, HiHome, HiOfficeBuilding, HiAcademicCap, 
 import { projects } from '@/lib/data'
 import SectionHeading from '@/components/ui/SectionHeading'
 import GlassCard from '@/components/ui/GlassCard'
+
+const MapView = dynamic(() => import('@/components/map/MapView'), { ssr: false })
 
 const iconMap: Record<string, React.ReactNode> = {
   amenities: <HiOfficeBuilding className="text-gold" size={20} />,
@@ -183,8 +186,12 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ slug: 
                   <h3 className="text-lg font-semibold text-white mb-4">Location</h3>
                   <p className="text-gray-400 text-sm mb-2">{project.address}</p>
                   <p className="text-gray-400 text-sm mb-4">{project.city}, {project.province}</p>
-                  <div className="h-40 bg-gradient-to-br from-dark-3 to-dark-4 rounded-lg flex items-center justify-center">
-                    <span className="text-gray-500 text-sm">Map Loading...</span>
+                  <div className="h-40 rounded-lg overflow-hidden">
+                    <MapView
+                      markers={[{ lat: project.lat, lng: project.lng, title: project.title, subtitle: project.address }]}
+                      zoom={14}
+                      height="160px"
+                    />
                   </div>
                 </GlassCard>
               </div>
