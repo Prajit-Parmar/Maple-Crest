@@ -9,12 +9,12 @@ import ChatBot from "@/components/chatbot/ChatBot";
 import PortfolioBanner from "@/components/layout/PortfolioBanner";
 
 const sourceSans = Source_Sans_3({
-  variable: "--font-sans",
+  variable: "--font-source-sans",
   subsets: ["latin"],
 });
 
 const sourceCode = Source_Code_Pro({
-  variable: "--font-heading",
+  variable: "--font-source-code",
   subsets: ["latin"],
 });
 
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     template: "%s | Maple Crest Developments",
   },
   description:
-    "Portfolio/demo project — Maple Crest Developments concept site showcasing a fictional Canadian real estate developer. Built with Next.js, TypeScript, and Leaflet.",
+    "Portfolio/demo project — Maple Crest Developments concept site showcasing a fictional Canadian real estate developer.",
   keywords: [
     "portfolio", "demo", "Next.js", "real estate concept",
     "Maple Crest", "fictional company", "web development portfolio",
@@ -35,13 +35,13 @@ export const metadata: Metadata = {
     locale: "en_CA",
     siteName: "Maple Crest Developments (Portfolio)",
     title: "Maple Crest Developments | Portfolio Demo",
-    description: "Portfolio/demo project showcasing a fictional Canadian real estate developer. Not a real company.",
+    description: "Portfolio/demo project. Not a real company.",
     images: [{ url: "/images/og-image.jpg", width: 1200, height: 630, alt: "Maple Crest Developments — Portfolio Demo" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Maple Crest Developments (Portfolio Demo)",
-    description: "Portfolio/demo project showcasing a fictional Canadian real estate developer. Not a real company.",
+    description: "Portfolio/demo project. Not a real company.",
   },
   robots: { index: false, follow: false },
 };
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${sourceSans.variable} ${sourceCode.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col" suppressHydrationWarning>
+      <body className="min-h-full flex flex-col bg-white text-[#370000]" suppressHydrationWarning>
         <PortfolioBanner />
         <Navbar />
         <main className="flex-1">{children}</main>
@@ -61,8 +61,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             "@context": "https://schema.org",
             "@type": "WebPage",
             "name": "Maple Crest Developments — Portfolio Demo",
-            "description": "Fictional real estate developer concept site. This is a portfolio/demo project, not a real company.",
-            "about": { "@type": "Thing", "name": "Portfolio Project", "description": "A Next.js portfolio project demonstrating a fictional Canadian real estate developer website." }
+            "description": "Fictional real estate developer concept site. This is a portfolio/demo project, not a real company."
           }
         `}</Script>
       </body>
