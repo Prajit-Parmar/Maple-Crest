@@ -4,7 +4,7 @@ import { useState } from 'react';
 import dynamic from 'next/dynamic';
 import { motion } from 'framer-motion';
 import { useParams } from 'next/navigation';
-import { HiLocationMarker, HiHome, HiUser, HiCalendar, HiCheck, HiX as HiXIcon } from 'react-icons/hi';
+import { HiLocationMarker, HiHome, HiUser, HiCalendar, HiCheck, HiX as HiXIcon, HiArrowLeft } from 'react-icons/hi';
 import Button from '@/components/ui/Button';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 
@@ -33,6 +33,10 @@ export default function RentalDetailPage() {
     <main className="min-h-screen pt-24">
       <section className="relative py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Link href="/rent" className="inline-flex items-center gap-2 px-4 py-2 glass rounded-lg text-sm text-gray-300 hover:text-gold transition-all duration-300 mb-6 group">
+            <HiArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+            Back to Rentals
+          </Link>
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
             <div className="lg:col-span-3">
               <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="glass rounded-2xl overflow-hidden">

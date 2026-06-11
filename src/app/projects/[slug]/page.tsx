@@ -5,7 +5,7 @@ import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { HiLocationMarker, HiCalendar, HiHome, HiOfficeBuilding, HiAcademicCap, HiShoppingBag, HiTruck } from 'react-icons/hi'
+import { HiLocationMarker, HiCalendar, HiHome, HiOfficeBuilding, HiAcademicCap, HiShoppingBag, HiTruck, HiArrowLeft } from 'react-icons/hi'
 import { projects } from '@/lib/data'
 import SectionHeading from '@/components/ui/SectionHeading'
 import GlassCard from '@/components/ui/GlassCard'
@@ -42,6 +42,10 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ slug: 
       <section className="relative pt-24">
         <div className="relative h-[50vh] md:h-[70vh] overflow-hidden">
           <Image src={project.images[selectedImage]} alt={project.title} fill className="object-cover" />
+          <Link href="/projects" className="absolute top-6 left-6 z-20 flex items-center gap-2 px-4 py-2 glass rounded-lg text-sm text-gray-300 hover:text-gold transition-all duration-300 group">
+            <HiArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+            Back to Projects
+          </Link>
           <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/50 to-transparent" />
           <div className="absolute bottom-0 left-0 right-0 p-8 md:p-16">
             <div className="max-w-7xl mx-auto">
