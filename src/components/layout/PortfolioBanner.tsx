@@ -16,7 +16,7 @@ export default function PortfolioBanner() {
 
   return (
     <div
-      className={`relative z-50 bg-amber-600 text-amber-50 text-center text-xs sm:text-sm font-medium px-4 py-2.5 transition-all duration-500 ${
+      className={`relative z-50 bg-primary text-dark text-center text-xs sm:text-sm font-medium px-4 py-2.5 transition-all duration-500 ${
         visible ? 'opacity-100 max-h-12' : 'opacity-0 max-h-0 py-0 overflow-hidden'
       }`}
     >
@@ -30,7 +30,7 @@ export default function PortfolioBanner() {
             localStorage.setItem('portfolio-banner-dismissed', 'true')
           }, 500)
         }}
-        className="absolute right-3 top-1/2 -translate-y-1/2 p-1 rounded hover:bg-amber-700/50 transition-colors"
+        className="absolute right-3 top-1/2 -translate-y-1/2 p-1 rounded hover:bg-dark/10 transition-colors"
         aria-label="Dismiss banner"
       >
         <HiX size={16} />
