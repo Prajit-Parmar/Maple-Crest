@@ -68,10 +68,19 @@ export default function Footer() {
         </div>
       </div>
 
+      <div className="border-t border-amber-500/20 bg-amber-500/5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 text-center">
+          <p className="text-amber-400/80 text-xs">
+            🎓 Portfolio / Demo Project — This is not a real real estate company. 
+            All content is fictional and created for demonstration purposes only.
+          </p>
+        </div>
+      </div>
+
       <div className="border-t border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-gray-500 text-sm">
-            &copy; {new Date().getFullYear()} Maple Crest Developments. All rights reserved.
+            &copy; {new Date().getFullYear()} Maple Crest Developments (Portfolio). All rights reserved.
           </p>
           <div className="flex gap-6">
             <Link href="/privacy" className="text-gray-500 hover:text-gold text-sm transition-colors">Privacy Policy</Link>

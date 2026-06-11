@@ -25,41 +25,41 @@ export const metadata: Metadata = {
     template: "%s | Maple Crest Developments",
   },
   description:
-    "Premium residential, commercial and mixed-use developments across Canada. Building Canada's future, one community at a time.",
+    "Portfolio/demo project — Maple Crest Developments concept site showcasing a fictional Canadian real estate developer. Built with Next.js, TypeScript, and Leaflet.",
   keywords: [
-    "Canadian real estate",
-    "construction company Canada",
-    "luxury homes Toronto",
-    "real estate developer",
+    "portfolio",
+    "demo",
+    "Next.js",
+    "real estate concept",
     "Maple Crest",
-    "Canadian communities",
-    "property development",
+    "fictional company",
+    "web development portfolio",
   ],
   openGraph: {
     type: "website",
     locale: "en_CA",
-    siteName: "Maple Crest Developments",
-    title: "Maple Crest Developments | Premium Canadian Construction & Real Estate",
+    siteName: "Maple Crest Developments (Portfolio)",
+    title: "Maple Crest Developments | Portfolio Demo",
     description:
-      "Premium residential, commercial and mixed-use developments across Canada.",
+      "Portfolio/demo project showcasing a fictional Canadian real estate developer. Not a real company.",
     images: [
       {
         url: "/images/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Maple Crest Developments",
+        alt: "Maple Crest Developments — Portfolio Demo",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Maple Crest Developments",
+    title: "Maple Crest Developments (Portfolio Demo)",
     description:
-      "Premium residential, commercial and mixed-use developments across Canada.",
+      "Portfolio/demo project showcasing a fictional Canadian real estate developer. Not a real company.",
   },
   robots: {
-    index: true,
-    follow: true,
+    index: false,
+    follow: false,
   },
 };
 
@@ -73,7 +73,11 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${playfair.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col" suppressHydrationWarning>
+        <div className="bg-amber-500 text-amber-950 text-center text-xs sm:text-sm font-medium px-4 py-2">
+          🎓 Portfolio / Demo Project — Not a real real estate company.{' '}
+          <span className="hidden sm:inline">Inquiries go to the developer&apos;s personal email for portfolio purposes.</span>
+        </div>
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />
@@ -83,25 +87,14 @@ export default function RootLayout({
           {`
             {
               "@context": "https://schema.org",
-              "@type": "RealEstateAgent",
-              "name": "Maple Crest Developments",
-              "description": "Premium residential, commercial and mixed-use developments across Canada.",
-              "url": "https://www.maplecrestdevelopments.ca",
-              "telephone": "(416) 555-8900",
-              "email": "info@maplecrestdevelopments.ca",
-              "address": {
-                "@type": "PostalAddress",
-                "streetAddress": "120 King Street West, Suite 1800",
-                "addressLocality": "Toronto",
-                "addressRegion": "Ontario",
-                "postalCode": "M5X 1Y5",
-                "addressCountry": "CA"
-              },
-              "sameAs": [
-                "https://www.linkedin.com/company/maple-crest-developments"
-              ],
-              "foundingDate": "2009",
-              "numberOfEmployees": 250
+              "@type": "WebPage",
+              "name": "Maple Crest Developments — Portfolio Demo",
+              "description": "Fictional real estate developer concept site. This is a portfolio/demo project, not a real company.",
+              "about": {
+                "@type": "Thing",
+                "name": "Portfolio Project",
+                "description": "A Next.js portfolio project demonstrating a fictional Canadian real estate developer website."
+              }
             }
           `}
         </Script>
