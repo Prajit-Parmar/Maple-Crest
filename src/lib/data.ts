@@ -192,12 +192,12 @@ export const rentals: RentalProperty[] = [
 ]
 
 export const teamMembers: TeamMember[] = [
-  { id: 't1', name: 'James Mitchell', role: 'CEO & Founder', department: 'Executive', image: '/images/team/team-1.jpg', description: 'Over 25 years of experience in Canadian real estate development.' },
-  { id: 't2', name: 'Sarah Chen', role: 'Chief Architect', department: 'Architecture', image: '/images/team/team-2.jpg', description: 'Award-winning architect specializing in sustainable community design.' },
-  { id: 't3', name: 'Michael O\'Brien', role: 'VP of Construction', department: 'Construction', image: '/images/team/team-3.jpg', description: 'Leading large-scale residential and commercial projects across Canada.' },
-  { id: 't4', name: 'Emily Watson', role: 'Director of Urban Planning', department: 'Urban Planning', image: '/images/team/team-4.jpg', description: 'Creating vibrant, walkable communities with smart growth principles.' },
-  { id: 't5', name: 'David Park', role: 'Senior Structural Engineer', department: 'Engineering', image: '/images/team/team-5.jpg', description: 'Expert in innovative structural solutions for complex developments.' },
-  { id: 't6', name: 'Lisa Tremblay', role: 'Head of Property Management', department: 'Management', image: '/images/team/team-6.jpg', description: 'Ensuring exceptional living experiences for all Maple Crest residents.' },
+  { id: 't1', name: 'James Mitchell', role: 'CEO & Founder', department: 'Executive', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80', description: 'Over 25 years of experience in Canadian real estate development.' },
+  { id: 't2', name: 'Sarah Chen', role: 'Chief Architect', department: 'Architecture', image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80', description: 'Award-winning architect specializing in sustainable community design.' },
+  { id: 't3', name: 'Michael O\'Brien', role: 'VP of Construction', department: 'Construction', image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80', description: 'Leading large-scale residential and commercial projects across Canada.' },
+  { id: 't4', name: 'Emily Watson', role: 'Director of Urban Planning', department: 'Urban Planning', image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&q=80', description: 'Creating vibrant, walkable communities with smart growth principles.' },
+  { id: 't5', name: 'David Park', role: 'Senior Structural Engineer', department: 'Engineering', image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80', description: 'Expert in innovative structural solutions for complex developments.' },
+  { id: 't6', name: 'Lisa Tremblay', role: 'Head of Property Management', department: 'Management', image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&q=80', description: 'Ensuring exceptional living experiences for all Maple Crest residents.' },
 ]
 
 export const companyStats = {

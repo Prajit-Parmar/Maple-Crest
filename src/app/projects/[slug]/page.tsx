@@ -9,8 +9,10 @@ import { HiLocationMarker, HiCalendar, HiHome, HiOfficeBuilding, HiAcademicCap, 
 import { projects } from '@/lib/data'
 import SectionHeading from '@/components/ui/SectionHeading'
 import GlassCard from '@/components/ui/GlassCard'
+import FloorPlanViewer from '@/components/three/FloorPlanViewer'
 
 const MapView = dynamic(() => import('@/components/map/MapView'), { ssr: false })
+const BuildingViewer3D = dynamic(() => import('@/components/project/BuildingViewer3D'), { ssr: false })
 
 const iconMap: Record<string, React.ReactNode> = {
   amenities: <HiOfficeBuilding className="text-gold" size={20} />,
@@ -23,7 +25,6 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ slug: 
   const { slug } = use(params)
   const project = projects.find((p) => p.slug === slug)
   const [selectedImage, setSelectedImage] = useState(0)
-  const [selectedPlan, setSelectedPlan] = useState(0)
 
   if (!project) {
     return (
@@ -91,38 +92,14 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ slug: 
               </div>
 
               <h2 className="text-3xl font-bold font-serif text-white mb-6">Floor Plans</h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
-                {project.floorPlans.map((plan, i) => (
-                  <button key={plan.id} onClick={() => setSelectedPlan(i)} className={`glass rounded-xl p-6 text-left transition-all duration-300 ${selectedPlan === i ? 'border-gold' : 'hover:border-gold/30'}`}>
-                    <p className="text-gold font-semibold mb-1">{plan.name}</p>
-                    <p className="text-2xl font-bold text-white mb-2">{plan.sqft} sq.ft</p>
-                    <p className="text-gray-400 text-sm">{plan.bedrooms} Bed | {plan.bathrooms} Bath</p>
-                  </button>
+              <div className="space-y-6 mb-12">
+                {project.floorPlans.map((plan) => (
+                  <FloorPlanViewer key={plan.id} name={plan.name} bedrooms={plan.bedrooms} bathrooms={plan.bathrooms} sqft={plan.sqft} />
                 ))}
               </div>
 
-              {project.floorPlans[selectedPlan] && (
-                <GlassCard className="mb-12">
-                  <div className="aspect-video bg-gradient-to-br from-dark-3 to-dark-4 rounded-lg flex items-center justify-center">
-                    <div className="text-center">
-                      <span className="text-6xl block mb-4">📐</span>
-                      <p className="text-gold font-semibold">{project.floorPlans[selectedPlan].name}</p>
-                      <p className="text-gray-400 text-sm">{project.floorPlans[selectedPlan].sqft} sq.ft - {project.floorPlans[selectedPlan].bedrooms} Bedrooms</p>
-                    </div>
-                  </div>
-                </GlassCard>
-              )}
-
               <h2 className="text-3xl font-bold font-serif text-white mb-6">3D Building Viewer</h2>
-              <GlassCard className="mb-12">
-                <div className="aspect-video bg-gradient-to-br from-dark-3 to-dark-4 rounded-lg flex items-center justify-center">
-                  <div className="text-center">
-                    <span className="text-6xl block mb-4">🏗️</span>
-                    <p className="text-gold font-semibold mb-2">3D Building Viewer</p>
-                    <p className="text-gray-400 text-sm">Interactive 3D model loading...</p>
-                  </div>
-                </div>
-              </GlassCard>
+              <BuildingViewer3D />
             </div>
 
             <div>
