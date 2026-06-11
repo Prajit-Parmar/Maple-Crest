@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
+import { Source_Sans_3, Source_Code_Pro } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
@@ -8,12 +8,12 @@ import BackToTop from "@/components/layout/BackToTop";
 import ChatBot from "@/components/chatbot/ChatBot";
 import PortfolioBanner from "@/components/layout/PortfolioBanner";
 
-const inter = Inter({
-  variable: "--font-geist-sans",
+const sourceSans = Source_Sans_3({
+  variable: "--font-sans",
   subsets: ["latin"],
 });
 
-const spaceGrotesk = Space_Grotesk({
+const sourceCode = Source_Code_Pro({
   variable: "--font-heading",
   subsets: ["latin"],
 });
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable} h-full antialiased`}>
+    <html lang="en" className={`${sourceSans.variable} ${sourceCode.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col" suppressHydrationWarning>
         <PortfolioBanner />
         <Navbar />
