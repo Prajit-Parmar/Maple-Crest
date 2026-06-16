@@ -27,6 +27,7 @@ jobs:
       - run: npx next build
         env:
           NEXT_PUBLIC_BASE_PATH: /Maple-Crest
+          NEXT_PUBLIC_API_URL: ${{ vars.API_URL || 'http://localhost:5000/api' }}
       - uses: actions/upload-pages-artifact@v3
         with:
           path: ./out
