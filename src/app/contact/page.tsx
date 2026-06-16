@@ -7,6 +7,7 @@ import { HiPhone, HiMail, HiLocationMarker, HiClock, HiCheckCircle } from 'react
 import Button from '@/components/ui/Button';
 import Input, { TextArea } from '@/components/ui/Input';
 import AnimatedSection from '@/components/ui/AnimatedSection';
+import { submitContactForm } from '@/lib/api';
 
 const MapView = dynamic(() => import('@/components/map/MapView'), { ssr: false });
 
@@ -33,7 +34,7 @@ export default function ContactPage() {
     if (Object.keys(errs).length > 0) return;
     setLoading(true);
     try {
-      await fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(formData) });
+      await submitContactForm(formData);
       setSubmitted(true);
     } catch { setErrors({ form: 'Something went wrong.' }); }
     finally { setLoading(false); }

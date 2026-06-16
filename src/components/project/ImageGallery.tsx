@@ -69,7 +69,7 @@ export default function ImageGallery({ images, title }: ImageGalleryProps) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-black/95 backdrop-blur-xl flex items-center justify-center"
+            className="fixed inset-0 z-60 bg-black/95 backdrop-blur-xl flex items-center justify-center"
             onClick={() => setLightboxOpen(false)}
           >
             <button

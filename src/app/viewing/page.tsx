@@ -6,6 +6,7 @@ import { HiCheckCircle, HiCalendar, HiClock } from 'react-icons/hi';
 import Button from '@/components/ui/Button';
 import Input, { TextArea, Select } from '@/components/ui/Input';
 import AnimatedSection from '@/components/ui/AnimatedSection';
+import { submitViewing } from '@/lib/api';
 
 const projects = [
   { value: 'maple-heights-community', label: 'Maple Heights Community - Mississauga, ON' },
@@ -49,7 +50,7 @@ export default function ViewingPage() {
     if (Object.keys(errs).length > 0) return;
     setLoading(true);
     try {
-      await fetch('/api/viewings', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(formData) });
+      await submitViewing(formData);
       setSubmitted(true);
     } catch { setErrors({ form: 'Something went wrong.' }); }
     finally { setLoading(false); }

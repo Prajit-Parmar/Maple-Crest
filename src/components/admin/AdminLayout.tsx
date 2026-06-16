@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { HiHome, HiCollection, HiOfficeBuilding, HiCalendar, HiMail, HiChartBar, HiLogout, HiMenu, HiX } from 'react-icons/hi';
+import { HiHome, HiCollection, HiOfficeBuilding, HiCalendar, HiMail, HiChartBar, HiUserGroup, HiLogout, HiMenu, HiX } from 'react-icons/hi';
 
 const sidebarLinks = [
   { href: '/admin/dashboard', label: 'Dashboard', icon: HiChartBar },
@@ -11,6 +11,7 @@ const sidebarLinks = [
   { href: '/admin/rentals', label: 'Rentals', icon: HiHome },
   { href: '/admin/viewings', label: 'Viewings', icon: HiCalendar },
   { href: '/admin/leads', label: 'Leads', icon: HiMail },
+  { href: '/admin/users', label: 'Users', icon: HiUserGroup },
 ];
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {

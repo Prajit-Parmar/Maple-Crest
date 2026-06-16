@@ -6,6 +6,7 @@ import { HiCheckCircle } from 'react-icons/hi';
 import Button from '@/components/ui/Button';
 import Input, { TextArea, Select } from '@/components/ui/Input';
 import AnimatedSection from '@/components/ui/AnimatedSection';
+import { submitLead } from '@/lib/api';
 
 const projects = [
   { value: 'maple-heights-community', label: 'Maple Heights Community' },
@@ -57,7 +58,7 @@ export default function BuyPage() {
     if (Object.keys(errs).length > 0) return;
     setLoading(true);
     try {
-      await fetch('/api/leads', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...formData, type: 'purchase' }) });
+      await submitLead({ ...formData, type: 'purchase' });
       setSubmitted(true);
     } catch { setErrors({ form: 'Something went wrong.' }); }
     finally { setLoading(false); }

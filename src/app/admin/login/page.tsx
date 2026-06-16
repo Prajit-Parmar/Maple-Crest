@@ -4,6 +4,8 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
 
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api'
+
 export default function AdminLoginPage() {
   const router = useRouter()
   const [email, setEmail] = useState('')
@@ -16,9 +18,21 @@ export default function AdminLoginPage() {
     setError('')
     if (!email || !password) { setError('Please fill in all fields'); return }
     setLoading(true)
-    await new Promise((r) => setTimeout(r, 1000))
-    setLoading(false)
-    router.push('/admin/dashboard')
+    try {
+      const res = await fetch(`${API_BASE}/auth/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      })
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.error || 'Login failed')
+      localStorage.setItem('admin_token', data.token)
+      router.push('/admin/dashboard')
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'Login failed')
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -34,7 +48,7 @@ export default function AdminLoginPage() {
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
               <label className="block text-sm font-medium text-gray-300 mb-2">Email</label>
-              <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full px-4 py-3 bg-dark border border-gold/20 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-gold transition-colors" placeholder="admin@maplecrest.ca" />
+              <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full px-4 py-3 bg-dark border border-gold/20 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-gold transition-colors" placeholder="admin@maplecrestdevelopments.ca" />
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-300 mb-2">Password</label>

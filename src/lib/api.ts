@@ -1,58 +1,70 @@
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api'
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api'
+
+function getToken(): string | null {
+  if (typeof window !== 'undefined') return localStorage.getItem('admin_token')
+  return null
+}
 
 export async function apiFetch<T>(endpoint: string, options?: RequestInit): Promise<T> {
   const res = await fetch(`${API_BASE}${endpoint}`, {
     headers: { 'Content-Type': 'application/json', ...options?.headers },
     ...options,
   })
-  if (!res.ok) throw new Error(`API error: ${res.statusText}`)
-  return res.json()
+  const data = await res.json()
+  if (!res.ok) throw new Error(data.error || `API error: ${res.statusText}`)
+  return data
 }
 
-export async function fetchProjects(): Promise<import('@/types').Project[]> {
-  const res = await fetch('/api/projects', { next: { revalidate: 60 } })
-  if (!res.ok) throw new Error('Failed to fetch projects')
-  return res.json()
+export async function adminFetch<T>(endpoint: string, options?: RequestInit): Promise<T> {
+  const token = getToken()
+  const headers: Record<string, string> = { 'Content-Type': 'application/json' }
+  if (token) headers['Authorization'] = `Bearer ${token}`
+  const res = await fetch(`${API_BASE}${endpoint}`, {
+    headers: { ...headers, ...options?.headers as Record<string, string> },
+    ...options,
+  })
+  const data = await res.json()
+  if (!res.ok) {
+    if (res.status === 401 || res.status === 403) {
+      if (typeof window !== 'undefined') {
+        localStorage.removeItem('admin_token')
+        window.location.href = '/admin/login'
+      }
+    }
+    throw new Error(data.error || `API error: ${res.statusText}`)
+  }
+  return data
 }
 
-export async function fetchProject(slug: string): Promise<import('@/types').Project> {
-  const res = await fetch(`/api/projects/${slug}`, { next: { revalidate: 60 } })
-  if (!res.ok) throw new Error('Failed to fetch project')
-  return res.json()
+export async function fetchProjects() {
+  return apiFetch('/projects')
 }
 
-export async function fetchRentals(): Promise<import('@/types').RentalProperty[]> {
-  const res = await fetch('/api/rentals', { next: { revalidate: 60 } })
-  if (!res.ok) throw new Error('Failed to fetch rentals')
-  return res.json()
+export async function fetchProject(slug: string) {
+  return apiFetch(`/projects/${slug}`)
+}
+
+export async function fetchRentals() {
+  return apiFetch('/rentals')
 }
 
 export async function submitContactForm(data: Record<string, string>) {
-  const res = await fetch('/api/contact', {
+  return apiFetch('/contact', {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),
   })
-  if (!res.ok) throw new Error('Failed to submit form')
-  return res.json()
 }
 
 export async function submitLead(data: Record<string, string>) {
-  const res = await fetch('/api/leads', {
+  return apiFetch('/leads', {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),
   })
-  if (!res.ok) throw new Error('Failed to submit lead')
-  return res.json()
 }
 
 export async function submitViewing(data: Record<string, string>) {
-  const res = await fetch('/api/viewings', {
+  return apiFetch('/viewings', {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),
   })
-  if (!res.ok) throw new Error('Failed to schedule viewing')
-  return res.json()
 }
