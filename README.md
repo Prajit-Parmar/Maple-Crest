@@ -1,131 +1,93 @@
 # Maple Crest Developments
 
-**Premium Residential, Commercial and Mixed-Use Developments Across Canada** — a full-stack web application for a Canadian real estate development company.
+> **Fictional portfolio project. All company, listing, project, resident, and property data is simulated.**
 
-## Tech Stack
+A fictional Canadian real-estate developer portfolio site built with Next.js, React, TypeScript, Tailwind CSS, and Framer Motion. Designed to demonstrate modern web stack skills, responsive component architecture, and customer-facing UX design for a premium brand context.
 
-| Layer | Technology |
+**Live site:** https://prajit-parmar.github.io/Maple-Crest/
+
+---
+
+## Why I Built This
+
+Real-estate developer websites have clear UX goals: communicate premium brand positioning, surface project inventory clearly, and guide visitors from browsing to booking. I wanted to practice those conversion-focused design patterns using a modern React stack while building something polished enough to serve as a portfolio showcase.
+
+---
+
+## Tech Decisions
+
+| Choice | Reason |
 |---|---|
-| **Framework** | Next.js 16 (App Router) |
-| **UI** | React 19, TypeScript, Tailwind CSS v4 |
-| **Maps** | Leaflet, react-leaflet (OpenStreetMap tiles) |
-| **Animation** | Framer Motion |
-| **3D** | Three.js / React Three Fiber |
-| **Backend** | Express.js (Next.js API routes + standalone backend) |
-| **Database** | PostgreSQL + Prisma ORM |
-| **Auth** | JWT + bcryptjs |
-| **Containerization** | Docker + Docker Compose |
+| **Next.js (App Router)** | File-based routing, static export for GitHub Pages, React Server Components |
+| **TypeScript** | Type-safe component props and data models throughout |
+| **Tailwind CSS** | Rapid utility-first styling with consistent design tokens |
+| **Framer Motion** | Smooth page transitions, scroll-triggered reveals, and hover interactions |
+| **React components** | Reusable, composable UI pieces across listings, cards, and layout sections |
 
-## Features
+---
 
-### Public Pages
-- **Home** — Hero section, animated stats, featured projects, community map, testimonials
-- **Projects** — 6 residential communities across Ontario and Alberta with detailed pages
-- **Rent** — Browse & filter rental properties with detailed listings
-- **Buy** — Purchase inquiry form
-- **Book Viewing** — Multi-step scheduling form
-- **About** — Company story, team, values, sustainability
-- **Contact** — Contact form with interactive map
+## Key Features
 
-### Map Integration
-- **Interactive Community Map** on the homepage showing all project locations with popups
-- **Location maps** on each project detail page
-- **Location maps** on each rental property page
-- **Office location map** on the contact page
-- Uses **Leaflet** with **OpenStreetMap** tiles (free, no API key required)
-- Custom-styled map markers matching the brand's gold theme
+- **Community listings** — simulated residential and mixed-use development projects with status badges (Under Construction, Completed, Pre-Construction)
+- **Project discovery pages** — individual project detail pages with descriptions, features, and location context
+- **Booking and inquiry flows** — visitor-facing forms for scheduling viewings and contacting the sales team
+- **Responsive design system** — mobile-first layouts that scale cleanly from 375px to 1440px
+- **Framer Motion animations** — scroll-triggered section reveals, card hover states, and page transitions
+- **Consistent brand language** — typography scale, colour system, and spacing tokens applied across all pages
 
-### Admin Dashboard
-- Secure login with JWT authentication
-- Stats overview (leads, viewings, purchases)
-- Leads management table
-- Viewings management
-- Projects and rentals management
+---
 
-### Other Features
-- Responsive dark theme with glassmorphism UI
-- Animated counters and scroll-triggered animations
-- Floating chatbot assistant ("Maple Assistant")
-- SEO-friendly with dynamic sitemap and robots.txt
-- Docker Compose for full-stack deployment
-
-## Getting Started
-
-### Prerequisites
-- Node.js >= 20
-- Docker (optional, for PostgreSQL + backend)
-
-### Installation
-
-```bash
-# Install frontend dependencies
-npm install
-
-# Install backend dependencies
-cd backend && npm install && cd ..
-```
-
-### Development
-
-```bash
-# Start the Next.js dev server
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) in your browser.
-
-### Docker (Full Stack)
-
-```bash
-docker-compose up --build
-```
-
-This starts:
-- Frontend on port 3000
-- Backend API on port 5000
-- PostgreSQL on port 5432
-
-### Backend Setup (Standalone)
-
-```bash
-cd backend
-npm run dev
-```
-
-### Environment Variables
-
-Copy `.env.example` to `.env.local` and configure:
+## Component Architecture
 
 ```
-DATABASE_URL=postgresql://...
-JWT_SECRET=your-secret-key
+app/
+  layout.tsx         # Root layout, nav, footer
+  page.tsx           # Homepage: hero, featured developments, CTA
+  developments/      # Community listings index and detail pages
+  contact/           # Inquiry and booking forms
+components/
+  ui/                # Base components: Button, Card, Badge, Input
+  sections/          # Page sections: Hero, ProjectGrid, ContactForm
+  layout/            # Nav, Footer, PageWrapper
 ```
 
-## Project Structure
+---
 
-```
-src/
-├── app/                # Next.js App Router pages
-│   ├── page.tsx        # Homepage
-│   ├── projects/       # Project listing & details
-│   ├── rent/           # Rental listings & details
-│   ├── buy/            # Purchase inquiry
-│   ├── viewing/        # Booking form
-│   ├── about/          # About page
-│   ├── contact/        # Contact page
-│   ├── admin/          # Admin dashboard
-│   └── api/            # API routes
-├── components/
-│   ├── home/           # Homepage components (Hero, CommunityMap, etc.)
-│   ├── map/            # Leaflet map component
-│   ├── layout/         # Navbar, Footer
-│   ├── project/        # Project-related components
-│   ├── ui/             # Reusable UI components
-│   └── chatbot/        # Chatbot component
-├── lib/                # Utilities, data, API helpers
-└── types/              # TypeScript interfaces
-```
+## Responsive Design Approach
 
-## License
+Built mobile-first with Tailwind's responsive prefix system:
 
-Private — Maple Crest Developments
+- **375px** — single-column stacked layout, touch-friendly tap targets
+- **768px** — two-column project grid, side-by-side hero layout
+- **1024px** — full nav, three-column grids, expanded feature sections
+- **1440px** — max-width container with generous whitespace
+
+Animations respect `prefers-reduced-motion` — transitions are disabled for users who request it.
+
+---
+
+## What Is Simulated
+
+All data in this project is fictional:
+
+- Company name, logo, and brand identity — invented for the project
+- Community names, locations, and project descriptions — entirely made up
+- Pricing, availability, and sales status — fictional demo data
+- Contact form submissions — not delivered to a real team
+
+---
+
+## What I Would Do Differently
+
+- Add a CMS (Sanity or Contentful) to manage development listings without code changes
+- Implement real form delivery via Resend or Formspree for contact and booking flows
+- Add end-to-end tests for inquiry and booking flows
+- Add proper SEO metadata per development page
+
+---
+
+## Project Context
+
+Built as a portfolio project to demonstrate Next.js, TypeScript, and Tailwind CSS in a real-estate UX context. Focus was on visual polish, responsive component architecture, and conversion-focused information structure.
+
+**Stack:** Next.js · React · TypeScript · Tailwind CSS · Framer Motion
